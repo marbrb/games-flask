@@ -1,0 +1,4 @@
+CREATE TABLE scores (
+  user VARCHAR(10),
+  score INTEGER UNSIGNED NOT NULL
+);

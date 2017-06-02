@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import json
-
+from connections import get_scores
 
 app = Flask(__name__)
 
@@ -16,5 +16,4 @@ def scores():
         return data["user"]
         #TODO: SAVE O DATABASE AND RETURN A JSON
     else:
-        #TODO: return a json with all scores
-        pass
+        return json.dumps(get_scores())
