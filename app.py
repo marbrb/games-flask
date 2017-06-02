@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import json
-from connections import get_scores
+from connections import get_scores, save_score
 
 app = Flask(__name__)
 
@@ -13,7 +13,7 @@ def index():
 def scores():
     if request.method == 'POST':
         data = request.get_json()
-        return data["user"]
-        #TODO: SAVE O DATABASE AND RETURN A JSON
+        success = save_score(data["user"], data["score"])
+        return json.dumps(success)
     else:
         return json.dumps(get_scores())

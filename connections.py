@@ -8,6 +8,7 @@ def create_connection():
 def serialize(fields, values):
     """serializar estructuras a json"""
     r = []
+    print(values)
     for y in values:
         r.append([str(x) for x in y])
 
@@ -32,3 +33,10 @@ def get_scores():
         return json
     else:
         return r
+
+def save_score(user, score):
+    db, c = create_connection()
+    status  = c.execute("INSERT INTO scores VALUES (%s,%s)",(user,score))
+    db.commit()
+    fields = ["status"]
+    return serialize(fields, ((status,),))
