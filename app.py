@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import json
 from connections import get_scores, save_score
 
@@ -7,9 +7,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return redirect('/wormi')
 
-@app.route('/scores', methods=['GET', 'POST'])
+@app.route('/wormi')
+def wormi():
+    return render_template('wormi.html')
+
+@app.route('/arcade', methods=['GET', 'POST'])
 def scores():
     if request.method == 'POST':
         data = request.get_json()
